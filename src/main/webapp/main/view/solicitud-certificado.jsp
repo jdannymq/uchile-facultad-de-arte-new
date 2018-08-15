@@ -55,10 +55,10 @@
 		<script src="/uchile-facultad-de-arte-new/assets/js/validar_es.js"></script>
 		
 		<script type="text/javascript">
-		var jsonMensaje = ${jsonMensaje};
+		var jsonMensajeError = ${Error};
 		var jsonListaPrograma = ${listaPrograma};
 		var jsonListaTipoCertificado = ${listaTipoCertificado};
-		var jsonListaFinalidadCertificado= ${listaFinalidadCertificado};
+		var jsonListaFinalidadCertificado = ${listaFinalidadCertificado};
 		$( document ).ready(function() {
 			console.log('prueba');
 	     });	
@@ -136,8 +136,8 @@
 								{{selectedPrograma}} <span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li ng-repeat="programaUniversidad in jsonListaPrograma track by $index">
-									{{programaUniversidad.nombreProgramaUniversidad}}
+								<li ng-repeat="programaUniversidad in jsonListaProgramaCtrl track by $index">
+									<a ng-click="seleccionDePrograma(programaUniversidad)">{{programaUniversidad.nombreProgramaUniversidad}}</a>
 								</li>
 							</ul>
 						</div>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
+import com.manashiki.uchilearte.servdto.dto.entities.formulario.ProgramaUniversidadDTO;
 import com.manashiki.uchilearte.solicitud.web.controller.impl.SolicitudCertificadoImpl;
 
 
@@ -44,25 +45,35 @@ public class SolicitudCertificadoController extends HttpServlet {
 			SolicitudCertificadoImpl solicitudCertificadoImpl = new SolicitudCertificadoImpl();
 			solicitudCertificadoImpl.iniciliazarFormulario();
 			
+			
+			/*no borrar lo voy utilizar para el select de programa
+			 * ProgramaUniversidadDTO  primerObjeto = new ProgramaUniversidadDTO(); 
+			primerObjeto.setNombreProgramaUniversidad("Seleccionar Programa");
+			solicitudCertificadoImpl.getListaProgramaUniversidadDTO().add(0, primerObjeto);
+			*/
 			String listaPrograma = g.toJson(solicitudCertificadoImpl.getListaProgramaUniversidadDTO());
 			String listaTipoCertificado = g.toJson(solicitudCertificadoImpl.getListaTipoCertificado());
 			String listaFinalidadCertificado = g.toJson(solicitudCertificadoImpl.getListaFinalidadCertificado());
 			
 			logger.info(listaPrograma);
-			
+				
 			request.setAttribute("listaPrograma", listaPrograma);
 			request.setAttribute("listaTipoCertificado", listaTipoCertificado);
 			request.setAttribute("listaFinalidadCertificado", listaFinalidadCertificado);
-			request.setAttribute("jsonMensaje", "{'nombre' : 'prueba de inicio'}");
+			request.setAttribute("Error", "{'mensajeError':''}");
 			request.getRequestDispatcher("/main/view/solicitud-certificado.jsp").forward(request, response);
 			logger.info("Pintando Solicitud de certificados.");
 	
 		} 
 		catch (Exception e) {
 			logger.error("Exception: "+e.getMessage(), e);
-			request.setAttribute("listasCertificados", "{}");
-			request.setAttribute("listaProgramas", "{}");
-			request.setAttribute("jsonMensaje", "{'nombre' : 'prueba de inicio'}");			
+			request.setAttribute("listaPrograma", "");
+			request.setAttribute("listaTipoCertificado", "");
+			request.setAttribute("listaFinalidadCertificado", "");
+			request.setAttribute("Error", "{'mensajeError':'Error de los servicios interno'}");
+			request.getRequestDispatcher("/main/view/solicitud-certificado.jsp").forward(request, response);
+			logger.info("Pintando Solicitud de certificados.");
+			
 			request.getRequestDispatcher("/main/view/solicitud-certificado.jsp").forward(request, response);
 			logger.info("Pintando Solicitud de certificados pasando por error.");
 		}
