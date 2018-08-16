@@ -75,182 +75,186 @@
 	<div class="main-container">
 		<div id="msg" />
 		<div class="page-header">
-		  <h1 style="margin: 0.1em 16px 0.2em 0;font-size: 29px;font-weight: normal;color: #333;">	Solicitud de Certificados</h1>
+		  <h1 style="margin: 0.1em 16px 0.2em 0;font-size: 29px;font-weight: normal;color: #333;">Solicitud de Certificados</h1>
 		</div>
 		
 		<div class="titulos">Bienvenido al sistema de Solicitud de 	Certificados en Línea de la Escuela de Postgrado de la Facultad de Artes de la Universidad de Chile.</div>
-		
+		<br />
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
-		<div>
-			<p>
-			  <button type="button" class="btn botones-arribas" id="antecedentes" style="border: 1px solid #fcefa1">Antecedentes Personales</button>
-			  <button type="button" class="btn" id="confirmacion">Confirmacion de Solicitud</button>
-			</p>
-		</div>
+		<ul class="nav nav-tabs" style="border-bottom: 1px solid #fff;">
+		  <li id="pestana1">
+		  	<a id="pestanaAntecedentes" 
+				data-toggle="tab" 
+				href="#antecedentes" 
+				class="btn boton-activo" 
+				style="border:1px solid #fcefa1;">Antecedentes Personales</a>
+		  </li>
+		  <li id="pestana1" >
+		  	<a id="pestanaConfirmacion" 
+		  	   data-toggle="tab" 
+		  	   href="#confirmacion" 
+		  	   class="btn boton-inactivo" 
+		  	   style="border:1px solid #ddd;">Confirmacion de Solicitud</a>
+		  </li>
+		</ul>
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />	
-			
-		<div>
-		  <table class="table" cellpadding="1" cellspacing="1" border="0">
-		    <thead>
-		      <tr>
-		        <th></th>
-		        <th>Nombre</th>
-		        <th>Apellido Paterno</th>
-		        <th>Apellido Materno</th>
-		      </tr>
-		    </thead>
-		    <tbody>
-		      <tr>
-		        <td style="font-size: 12px!important;">Nombre Completo</td>
-		        <td><input type="text" class="form-control" id="nombres" > </td>
-		        <td><input type="text" class="form-control" id="apellidoPaterno"></td>
-		        <td><input type="text" class="form-control" id="apellidoMaterno"></td>
-		      </tr>
-		      
-		      <tr>
-		        <td style="font-size: 12px!important;">RUT</td>
-		        <td><input type="text" class="form-control" id="rut" > </td>
-		        <td></td>
-		        <td></td>
-		      </tr>
-		      <tr>
-		        <td style="font-size: 12px!important;">Correo Electronico</td>
-		        <td><input type="text" class="form-control" id="correo" > </td>
-		        <td></td>
-		        <td></td>
-		      </tr>		      
-		      <tr>
-		        <td style="font-size: 12px!important;">Programa</td>
-		        <td>
-					<div class="vf-selector">
-						<div class="dropdown">
-							<button class="btn btn-default dropdown-toggle" type="button"
-								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="true" ng-cloak>
-								{{selectedPrograma}} <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-								<li ng-repeat="programaUniversidad in jsonListaProgramaCtrl track by $index">
-									<a ng-click="seleccionDePrograma(programaUniversidad)">{{programaUniversidad.nombreProgramaUniversidad}}</a>
-								</li>
-							</ul>
-						</div>
-					</div>					  
-		        </td>
-		        <td></td>
-		        <td></td>
-		      </tr>	
-		      <tr>
-		        <td style="font-size: 12px!important;">Año de Ingreso</td>
-		        <td><input type="text" class="form-control" id="annoIngresos" > </td>
-		        <td></td>
-		        <td></td>
-		      </tr>			      
-		      	  		      
-		    </tbody>
-		  </table>
-		</div>
-		<div>
-		  <table class="table" cellpadding="1" cellspacing="1" >
-		    <tbody>
-		      <tr>
-		        <td style="font-size: 12px!important;vertical-align: center; width: 15%;">Tipo de Certificado</td>
-		        <td> 
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 1</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 2</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 3</label>
-					</div>	
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 4</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 5</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 6</label>
-					</div>	
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 7</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 8</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 9</label>
-					</div>	
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 10</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 11</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 12</label>
-					</div>							
-					
-											        
-		        </td>
-		      </tr>
-		    </tbody>
-		  </table>		
-		</div>
-		<div>
-		  <table class="table" cellpadding="1" cellspacing="1" >
-		    <tbody>
-		      <tr>
-		        <td style="font-size: 12px!important; width:15%;">Fines del certificado</td>
-		        <td> 
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 1</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 2</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 3</label>
-					</div>	
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 4</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 5</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 6</label>
-					</div>	
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 7</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 8</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 9</label>
-					</div>	
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 10</label>
-					</div>
-					<div class="radio">
-					  <label><input type="radio" name="optradio">Option 11</label>
-					</div>
-					<div class="radio disabled">
-					  <label><input type="radio" name="optradio">Option 12</label>
-					</div>		        
-		        </td>
-		      </tr>
-		    </tbody>
-		  </table>		
+				
+		<div class="tab-content">
+		  <div id="antecedentes" class="tab-pane fade in active">
+		  <br />
+		  	<div>
+			  <table class="table" cellpadding="1" cellspacing="1" border="0"> 
+			    <thead>
+			      <tr>
+			        <th></th>
+			        <th>Nombre</th>
+			        <th>Apellido Paterno</th>
+			        <th>Apellido Materno</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td style="font-size: 12px!important;">Nombre Completo</td>
+			        <td><input id="nombres" type="text" class="form-control" ></td>
+			        <td><input type="text" class="form-control" id="apellidoPaterno"></td>
+			        <td><input type="text" class="form-control" id="apellidoMaterno"></td>
+			      </tr>
+			      
+			      <tr>
+			        <td style="font-size: 12px!important;">RUT</td>
+			        <td><input type="text" class="form-control" id="rut"></td>
+			        <td></td>
+			        <td></td>
+			      </tr>
+			      <tr>
+			        <td style="font-size: 12px!important;">Correo Electrónico</td>
+			        <td><input type="text" class="form-control" id="correo" > </td>
+			        <td></td>
+			        <td></td>
+			      </tr>		      
+			      <tr>
+			        <td style="font-size: 12px!important;">Programa</td>
+			        <td colspan="3">
+						<div class="vf-selector">
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="true" ng-cloak>
+									{{selectedPrograma}} <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<li ng-repeat="programaUniversidad in jsonListaProgramaCtrl track by $index">
+										<a ng-click="seleccionDePrograma(programaUniversidad)">{{programaUniversidad.nombreProgramaUniversidad}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>					  
+			        </td>
+			      </tr>	
+			      <tr>
+			        <td style="font-size: 12px!important;">Año de Ingreso</td>
+			        <td><input type="text" class="form-control" id="annoIngresos" > </td>
+			        <td></td>
+			        <td></td>
+			      </tr>			      
+			    </tbody>
+			  </table>
+			  <table class="table" cellpadding="1" cellspacing="1" >
+			    <tbody>
+			      <tr>
+			        <td style="font-size: 12px!important;vertical-align: center; width: 15%;">Tipo de Certificado</td>
+			        <td> 
+				        <div class="radio" ng-repeat='tipoCertificado in jsonTipoCertificadoCtrl track by $index'>
+	    					<label>
+	    						<input id="{{tipoCertificado.idTipoCertificado}}" 
+	    						     type="radio" 
+	    						     name="optradioTC" 
+	    						 ng-click="seleccionTipoCertificado(tipoCertificado)" > {{tipoCertificado.nombreTipoCertificado}}
+	    					</label>
+						</div>	    					
+			        </td>
+			      </tr>
+			    </tbody>
+			  </table>	
+			  <table class="table" cellpadding="1" cellspacing="1" >
+			    <tbody>
+			      <tr>
+			        <td style="font-size: 12px!important; width:15%;">Fines del certificado</td>
+			        <td> 
+				        <div class="radio" ng-repeat='finalidadCertificado in jsonListaFinalidadCertificadoCtrl track by $index'>
+	    					<label>
+	    						<input id="{{finalidadCertificado.idFinalidadCertificado}}" 
+	    							 type="radio" 
+	    							 name="optradioFC" 
+	    							 ng-click="seleccionFinalidadCertificado(finalidadCertificado)" > {{finalidadCertificado.nombreFinalidadCertificado}}
+	    					</label>
+						</div>	 			        
+			        </td>
+			      </tr>
+			    </tbody>
+			  </table>	
+		  	</div>
+		  </div>
+		  <div id="confirmacion" class="tab-pane fade">
+		  <br />
+		  	<div>
+			  <table class="table" cellpadding="1" cellspacing="1" border="0"> 
+			    <thead>
+			      <tr>
+			        <th></th>
+			        <th>Nombre</th>
+			        <th>Apellido Paterno</th>
+			        <th>Apellido Materno</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td style="font-size: 12px!important;">Nombre Completo</td>
+			        <td><span id="nombresLabel"/></td> 
+			        <td><span id="apellidoPaternoLabel"/></td>
+			        <td><span id="apellidoMaternoLabel" /></td>
+			      </tr>
+			      
+			      <tr>
+			        <td style="font-size: 12px!important;">RUT</td>
+			        <td><span id="rutLabel" /></td>
+			        <td></td>
+			        <td></td>
+			      </tr>
+			      <tr>
+			        <td style="font-size: 12px!important;">Correo Electrónico</td>
+			        <td><span id="correoLabel" /></td>
+			        <td></td>
+			        <td></td>
+			      </tr>		      
+			      <tr>
+			        <td style="font-size: 12px!important;">Programa</td>
+ 					<td colspan="3"><span id="programaLabel" /></td>				  
+			      </tr>	
+			      <tr>
+			        <td style="font-size: 12px!important;">Año de Ingreso</td>
+			        <td><span id="annoIngresosLabel"/></td>
+			        <td></td>
+			        <td></td>
+			      </tr>			      
+			      <tr>
+			        <td style="font-size: 12px!important;vertical-align: center; width: 15%;">Tipo de Certificado</td>
+					<td colspan="3"><span id="tipoLabel" /></td>
+			      </tr>
+			      <tr>
+			        <td style="font-size: 12px!important; width:15%;">Fines del certificado</td>
+					<td colspan="3"><span id="finesLabel" /></td>
+			      </tr>
+			    </tbody>
+			  </table>
+		  	</div>
+		  </div>
 		</div>
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
@@ -258,8 +262,10 @@
 		<div class="texto-saludate" />
 		<div class="left">
 			<p>
-			  <button type="button" class="btn botones-abajos" id="Limpiar">Limpiar</button>
-			  <button type="button" class="btn botones-abajos" id="siguiente">Siguiente</button>
+			  <button id="limpiar" type="button" class="btn botones-abajos"  ng-click="limpiarFormulario()">Limpiar</button>
+			  <button id="siguiente" type="button" class="btn botones-abajos" ng-click="siguienteFormulario()">Siguiente</button>
+			  <button id="enviar" type="button" class="btn botones-abajos"  ng-click="limpiarFormulario()">Enviar</button>
+			  <button id="pagar" type="button" class="btn botones-abajos" ng-click="siguienteFormulario()">Pagar</button>
 			</p>
 		</div>		
 		<div class="texto-saludate" />

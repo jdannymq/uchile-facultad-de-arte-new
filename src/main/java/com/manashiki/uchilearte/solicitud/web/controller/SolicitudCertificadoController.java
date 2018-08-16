@@ -46,11 +46,10 @@ public class SolicitudCertificadoController extends HttpServlet {
 			solicitudCertificadoImpl.iniciliazarFormulario();
 			
 			
-			/*no borrar lo voy utilizar para el select de programa
-			 * ProgramaUniversidadDTO  primerObjeto = new ProgramaUniversidadDTO(); 
+
+			ProgramaUniversidadDTO  primerObjeto = new ProgramaUniversidadDTO(); 
 			primerObjeto.setNombreProgramaUniversidad("Seleccionar Programa");
 			solicitudCertificadoImpl.getListaProgramaUniversidadDTO().add(0, primerObjeto);
-			*/
 			String listaPrograma = g.toJson(solicitudCertificadoImpl.getListaProgramaUniversidadDTO());
 			String listaTipoCertificado = g.toJson(solicitudCertificadoImpl.getListaTipoCertificado());
 			String listaFinalidadCertificado = g.toJson(solicitudCertificadoImpl.getListaFinalidadCertificado());
