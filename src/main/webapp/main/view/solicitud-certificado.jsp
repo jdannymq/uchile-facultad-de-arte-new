@@ -72,8 +72,8 @@
 		<img src='/uchile-facultad-de-arte-new/administracion-solicitudes/banner_1.jpg' border='0' alt="banner 1" />
 	</div>
 	
-	<div class="main-container">
-		<div id="msg" />
+	<div class="main-container footer">
+
 		<div class="page-header">
 		  <h1 style="margin: 0.1em 16px 0.2em 0;font-size: 29px;font-weight: normal;color: #333;">Solicitud de Certificados</h1>
 		</div>
@@ -85,19 +85,20 @@
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
 		<ul class="nav nav-tabs" style="border-bottom: 1px solid #fff;">
-		  <li id="pestana1">
+		  <li id="pestana1" class="active" style="border:1px solid #fcefa1;">
 		  	<a id="pestanaAntecedentes" 
 				data-toggle="tab" 
 				href="#antecedentes" 
 				class="btn boton-activo" 
-				style="border:1px solid #fcefa1;">Antecedentes Personales</a>
+				ng-click="volverPrimeraPestana()"
+				style="color: #000;" >Antecedentes Personales</a> 
 		  </li>
-		  <li id="pestana1" >
+		  <li id="pestana2" class="disabled disabledTab" style="border:1px solid #ddd;">
 		  	<a id="pestanaConfirmacion" 
 		  	   data-toggle="tab" 
 		  	   href="#confirmacion" 
 		  	   class="btn boton-inactivo" 
-		  	   style="border:1px solid #ddd;">Confirmacion de Solicitud</a>
+		  	   style="color: #000;">Confirmacion de Solicitud</a>
 		  </li>
 		</ul>
 		<div class="texto-saludate" />
@@ -121,20 +122,20 @@
 			    <tbody>
 			      <tr>
 			        <td style="font-size: 12px!important;">Nombre Completo</td>
-			        <td><input id="nombres" type="text" class="form-control" ></td>
-			        <td><input type="text" class="form-control" id="apellidoPaterno"></td>
-			        <td><input type="text" class="form-control" id="apellidoMaterno"></td>
+			        <td><input id="nombres" type="text" class="form-control" placeholder="Nombres"></td>
+			        <td><input type="text" class="form-control" id="apellidoPaterno" placeholder="Paterno"></td>
+			        <td><input type="text" class="form-control" id="apellidoMaterno" placeholder="Materno"></td>
 			      </tr>
 			      
-			      <tr>
+			      <tr style="border-top: 1px solid transparen!important;">
 			        <td style="font-size: 12px!important;">RUT</td>
-			        <td><input type="text" class="form-control" id="rut"></td>
+			        <td><input type="text" class="form-control" id="rut" maxlength="10" placeholder="Ej: XXXXXXXX-X"></td>
 			        <td></td>
 			        <td></td>
 			      </tr>
 			      <tr>
 			        <td style="font-size: 12px!important;">Correo Electrónico</td>
-			        <td><input type="text" class="form-control" id="correo" > </td>
+			        <td><input type="text" class="form-control" id="correo" placeholder="Ej: ejemplo@gmail.com" > </td>
 			        <td></td>
 			        <td></td>
 			      </tr>		      
@@ -159,7 +160,7 @@
 			      </tr>	
 			      <tr>
 			        <td style="font-size: 12px!important;">Año de Ingreso</td>
-			        <td><input type="text" class="form-control" id="annoIngresos" > </td>
+			        <td><input type="text" class="form-control" id="annoIngresos" maxlength="4" placeholder="Ej: 2006"> </td>
 			        <td></td>
 			        <td></td>
 			      </tr>			      
@@ -200,9 +201,13 @@
 			    </tbody>
 			  </table>	
 		  	</div>
+			<div id="msg" class="alert alert-danger" style="display: none;">
+				
+			</div>		  	
 		  </div>
+		  
 		  <div id="confirmacion" class="tab-pane fade">
-		  <br />
+		   <br />
 		  	<div>
 			  <table class="table" cellpadding="1" cellspacing="1" border="0"> 
 			    <thead>
@@ -255,6 +260,8 @@
 			  </table>
 		  	</div>
 		  </div>
+		  
+		  
 		</div>
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
@@ -264,8 +271,9 @@
 			<p>
 			  <button id="limpiar" type="button" class="btn botones-abajos"  ng-click="limpiarFormulario()">Limpiar</button>
 			  <button id="siguiente" type="button" class="btn botones-abajos" ng-click="siguienteFormulario()">Siguiente</button>
-			  <button id="enviar" type="button" class="btn botones-abajos"  ng-click="limpiarFormulario()">Enviar</button>
-			  <button id="pagar" type="button" class="btn botones-abajos" ng-click="siguienteFormulario()">Pagar</button>
+			  <button id="volver" type="button" class="btn botones-abajos" ng-click="volverPrimeraPestana()">Volver</button>
+			  <button id="enviar" type="button" class="btn botones-abajos"  ng-click="almacenarSolicitudCertificadoPagoOffline()">Enviar</button>
+			 
 			</p>
 		</div>		
 		<div class="texto-saludate" />
@@ -273,21 +281,15 @@
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
 		<div class="texto-saludate" />
-		<div class="texto-subintro">La respuesta oficial será enviada
-			a su correo electrónico</div>
+		<div class="texto-subintro">La respuesta oficial será enviada a su correo electrónico</div>
 		<div class="texto-subintro">Consideraciones importantes:</div>
-		<div class="texto-subintro">Para obtener los certificados que
-			tienen costo, se debe cancelar el IMPUESTO UNIVERSITARIO. Este
-			impuesto se paga en forma de "ESTAMPILLAS" las cuales se compran en
-			Servicios Centrales de la Universidad de Chile, calle Diagonal
-			Paraguay 265, 1er piso (Centro de Atención de Alumnos). El horario
-			de atención es de Lunes a Jueves de 09:00 a 13:00 hrs. Las
-			ESTAMPILLAS debes portarlas al momento de retirar tu certificado en
-			nuestra Escuela de Postgrado. El tiempo de entrega de tu
-			certificado es de 05 días hábiles.</div>
-	
-		<div class="texto-subintro">Para cualquier consulta, por favor
-			dirigirse a la Secretaría de Postgrado del Programa.</div>
+		<div class="texto-subintro">Para obtener los certificados que tienen costo, se debe cancelar el IMPUESTO UNIVERSITARIO. Este
+			impuesto se paga en forma de "ESTAMPILLAS" las cuales se compran en Servicios Centrales de la Universidad de Chile, calle Diagonal
+			Paraguay 265, 1er piso (Centro de Atención de Alumnos). El horario de atención es de Lunes a Jueves de 09:00 a 13:00 hrs. Las
+			ESTAMPILLAS debes portarlas al momento de retirar tu certificado en nuestra Escuela de Postgrado. El tiempo de entrega de tu
+			certificado es de 05 días hábiles.
+		</div>
+		<div class="texto-subintro">Para cualquier consulta, por favor dirigirse a la Secretaría de Postgrado del Programa.</div>
 		<div class="texto-saludate">Saluda atentamente</div>
 		<div class="texto-saludate">Escuela de Postgrado</div>
 		<div class="texto-saludate">Facultad de Artes</div>

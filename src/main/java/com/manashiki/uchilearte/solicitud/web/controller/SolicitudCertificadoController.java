@@ -44,8 +44,6 @@ public class SolicitudCertificadoController extends HttpServlet {
 		try {
 			SolicitudCertificadoImpl solicitudCertificadoImpl = new SolicitudCertificadoImpl();
 			solicitudCertificadoImpl.iniciliazarFormulario();
-			
-			
 
 			ProgramaUniversidadDTO  primerObjeto = new ProgramaUniversidadDTO(); 
 			primerObjeto.setNombreProgramaUniversidad("Seleccionar Programa");

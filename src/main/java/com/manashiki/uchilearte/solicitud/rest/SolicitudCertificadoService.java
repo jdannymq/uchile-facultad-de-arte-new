@@ -12,7 +12,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
+
 import com.google.gson.Gson;
+import com.manashiki.uchilearte.servdto.dto.entities.formulario.SolicitudCertificadoDTO;
+import com.manashiki.uchilearte.solicitud.web.controller.impl.SolicitudCertificadoImpl;
 
 
 @Path("/SolicitudCertificadoService")
@@ -21,17 +25,24 @@ public class SolicitudCertificadoService {
 	private static final Logger logger = Logger.getLogger(SolicitudCertificadoService.class);
 	
 	@POST
-    @Path("/obtenerDataCertificado")
+    @Path("/validarDataCertificado")
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
     public String obtenerListadoHoteles(
     									@FormParam("requestJson") String jsonParametrosBusquedaRequest,
     									@Context HttpServletResponse servletResponse) throws IOException {
-		logger.info("Inicio obtencion listado de Hoteles.");
+		logger.info("Inicio validación de Certificados.");
 		logger.info(jsonParametrosBusquedaRequest);
 		Gson g = new Gson();
+		SolicitudCertificadoDTO solicitud = new SolicitudCertificadoDTO();
 		try {
+			ObjectMapper objectMapper = new ObjectMapper();
 			
+			Object objeto = g.fromJson(jsonParametrosBusquedaRequest, Object.class);
+			
+			SolicitudCertificadoImpl solicitudCertificadoImpl = new SolicitudCertificadoImpl();
+			
+			solicitud = objectMapper.readValue(jsonParametrosBusquedaRequest, SolicitudCertificadoDTO.class);
 			
 
 		} catch (Exception e) {
@@ -42,7 +53,7 @@ public class SolicitudCertificadoService {
 		}
 		
 		
-		logger.info("Fin obtencion listado de Hoteles.");
+		logger.info("Fin validación de Certificados.");
 
 		try{
 
@@ -51,7 +62,7 @@ public class SolicitudCertificadoService {
 		}catch(Exception e){
 			logger.error("Exception No fue posible guardar en grafana.: "+e.getMessage(), e);
 		}
-        return "";
+        return "no hay resultadis";
     }
 	
 
