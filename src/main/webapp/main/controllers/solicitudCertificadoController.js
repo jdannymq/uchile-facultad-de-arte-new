@@ -325,7 +325,7 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
             }
         };
 
-        $http.post('/uchile-facultad-de-arte-new/rest/SolicitudCertificadoService/validarDataCertificado', data, config)
+        $http.post('/uchile-facultad-de-arte-new/rest/SolicitudCertificadoService/almacenarSolicitudCertificadoPagoOffline', data, config)
         .then(
         	function (response) {
         		$scope.tieneEtiquetaRecomendado = response.data.tieneEtiquetaRecomendado;

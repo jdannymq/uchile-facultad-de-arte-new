@@ -1,6 +1,7 @@
 package com.manashiki.uchilearte.solicitud.rest;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
@@ -16,7 +17,10 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import com.google.gson.Gson;
 import com.manashiki.uchilearte.servdto.dto.entities.formulario.SolicitudCertificadoDTO;
+import com.manashiki.uchilearte.solicitud.dto.ResponseTo;
 import com.manashiki.uchilearte.solicitud.web.controller.impl.SolicitudCertificadoImpl;
+import com.manashiki.uchilearte.solicitud.web.model.SolicitudCertificadoModel;
+import com.vf.fwk.util.AppGeneral;
 
 
 @Path("/SolicitudCertificadoService")
@@ -25,7 +29,7 @@ public class SolicitudCertificadoService {
 	private static final Logger logger = Logger.getLogger(SolicitudCertificadoService.class);
 	
 	@POST
-    @Path("/validarDataCertificado")
+    @Path("/almacenarSolicitudCertificadoPagoOffline")
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
     public String obtenerListadoHoteles(
@@ -34,36 +38,78 @@ public class SolicitudCertificadoService {
 		logger.info("Inicio validación de Certificados.");
 		logger.info(jsonParametrosBusquedaRequest);
 		Gson g = new Gson();
-		SolicitudCertificadoDTO solicitud = new SolicitudCertificadoDTO();
+		SolicitudCertificadoModel dataSolicitud = new SolicitudCertificadoModel();
+		SolicitudCertificadoImpl solicitudCertificadoImpl = new SolicitudCertificadoImpl();
+		ResponseTo data = new ResponseTo();
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			
-			Object objeto = g.fromJson(jsonParametrosBusquedaRequest, Object.class);
+			solicitudCertificadoImpl.iniciliazarFormulario();
+			dataSolicitud = objectMapper.readValue(jsonParametrosBusquedaRequest, SolicitudCertificadoModel.class);
+
+			if(solicitudCertificadoImpl.getSolicitudCertificadoDTO() == null){
+				solicitudCertificadoImpl.setSolicitudCertificadoDTO(new SolicitudCertificadoDTO());
+			}
+			solicitudCertificadoImpl.setProgramaUniversidadDTO(dataSolicitud.getPrograma());
+			solicitudCertificadoImpl.setFinalidadCertificado(dataSolicitud.getFinalidadCertificado());
 			
-			SolicitudCertificadoImpl solicitudCertificadoImpl = new SolicitudCertificadoImpl();
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setAnhoIngreso(dataSolicitud.getAnhoIngreso());
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setRutPersonaSolicitudCertificado(dataSolicitud.getRutPersonaSolicitudCertificado());
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setNombrePersonaSolicitudCertificado(dataSolicitud.getNombrePersonaSolicitudCertificado());
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setApellidoMaternoPersonaSolicitudCertificado(dataSolicitud.getApellidoMaternoPersonaSolicitudCertificado());
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setApellidoPaternoPersonaSolicitudCertificado(dataSolicitud.getApellidoPaternoPersonaSolicitudCertificado());
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setMailMember(dataSolicitud.getMailMember());
 			
-			solicitud = objectMapper.readValue(jsonParametrosBusquedaRequest, SolicitudCertificadoDTO.class);
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setDescripcionEstadoSolicitud("enviado");
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setEstadoSolicitud(0);
+			solicitudCertificadoImpl.getSolicitudCertificadoDTO().setFechaSolicitud(new Date());
+			if(solicitudCertificadoImpl.getFinalidadCertificado() != null){
+				solicitudCertificadoImpl.getSolicitudCertificadoDTO().setFinalidadCertificado(solicitudCertificadoImpl.getFinalidadCertificado().getNombreFinalidadCertificado());	
+				solicitudCertificadoImpl.getSolicitudCertificadoDTO().setIdFinalidadCertificado(solicitudCertificadoImpl.getFinalidadCertificado().getIdFinalidadCertificado());
+			}
+			if(solicitudCertificadoImpl.getProgramaUniversidadDTO() != null){
+				solicitudCertificadoImpl.getSolicitudCertificadoDTO().setIdProgramaUniversidad(solicitudCertificadoImpl.getProgramaUniversidadDTO().getIdProgramaUniversidad());
+				solicitudCertificadoImpl.getSolicitudCertificadoDTO().setProgramaUniversidad(solicitudCertificadoImpl.getProgramaUniversidadDTO().getNombreProgramaUniversidad());
+				solicitudCertificadoImpl.setSelecPrograma(solicitudCertificadoImpl.getProgramaUniversidadDTO().getIdProgramaUniversidad());
+			}
+			
+			if(dataSolicitud.getTipoCertificado() != null){
+				solicitudCertificadoImpl.getSolicitudCertificadoDTO().setIdTipoCertificado(dataSolicitud.getTipoCertificado().getIdTipoCertificado());
+				solicitudCertificadoImpl.getSolicitudCertificadoDTO().setTipoCertificado(dataSolicitud.getTipoCertificado().getNombreTipoCertificado());				
+			}
+
+			/*hay que validar antes de enivar la información*/
+			
 			
 
 		} catch (Exception e) {
-			logger.error("Exception: "+e.getMessage(), e);
-
-		}finally{
-
-		}
+			logger.error("Exception en el seteo de los datos para la solicitud de certificado: "+e.getMessage(), e);
+			data.setEstado("ERROR");
+			data.setMensaje("Exception en el seteo de los datos para la solicitud de certificado");
+			data.setUrl("uchile-facultad-de-arte-new/error/main/view/solicitud-certificado-error.jsp");
+			String jsonResultado = AppGeneral.convertirObjectToJson(data);
+			return jsonResultado;
+		}		
 		
-		
-		logger.info("Fin validación de Certificados.");
-
+		logger.info("################################## Siguiente Paso Almacenar dato ###################################################");
 		try{
-
+			solicitudCertificadoImpl.almacenarSolicitudCertificadoPagoOffline();
 
 
 		}catch(Exception e){
-			logger.error("Exception No fue posible guardar en grafana.: "+e.getMessage(), e);
+			logger.error("Exception No fue posible enviar la solicitud del certificado. "+e.getMessage(), e);
+			data.setEstado("ERROR");
+			data.setMensaje("Exception en el seteo de los datos para la solicitud de certificado");
+			data.setUrl("uchile-facultad-de-arte-new/error/main/view/solicitud-certificado-error.jsp");
+			String jsonResultado = AppGeneral.convertirObjectToJson(data);
+			return jsonResultado;			
 		}
-        return "no hay resultadis";
-    }
+        return "{'mensaje':''}";
+
+	
+	
+	
+	}
 	
 
 	@POST

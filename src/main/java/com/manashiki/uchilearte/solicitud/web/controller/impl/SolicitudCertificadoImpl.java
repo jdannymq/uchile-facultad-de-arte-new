@@ -218,37 +218,43 @@ public class SolicitudCertificadoImpl {
 	 * @return void.
 	 * no lanza Excepciones.
 	 */
-	public void validarNombreSolicitudCertificado(){
+	public boolean validarNombreSolicitudCertificado(){
 		if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getNombrePersonaSolicitudCertificado()!=null){
 			objLog.info("A - validarNombreSolicitudCertificado: "+solicitudCertificadoDTO.getNombrePersonaSolicitudCertificado());
+			return true;
 		}
+		return false;
 	}
 
-	public void validarApellidoPaternoPersonaSolicitudCertificado(){
+	public boolean validarApellidoPaternoPersonaSolicitudCertificado(){
 		if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getApellidoPaternoPersonaSolicitudCertificado()!=null){
 			objLog.info("B - validarApellidoPaternoPersonaSolicitudCertificado: "+solicitudCertificadoDTO.getApellidoPaternoPersonaSolicitudCertificado());
+			return true;
 		}
-
+		return false;
 	}
 
-	public void validarApellidoMaternoPersonaSolicitudCertificado(){
+	public boolean validarApellidoMaternoPersonaSolicitudCertificado(){
 		if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getApellidoMaternoPersonaSolicitudCertificado()!=null){
 			objLog.info("C - validarApellidoMaternoPersonaSolicitudCertificado: "+solicitudCertificadoDTO.getApellidoMaternoPersonaSolicitudCertificado());
+			return true;
 		}
-
+		return false;
 	}
 
-	public void validarRutPersonaSolicitudCertificado(){
+	public boolean validarRutPersonaSolicitudCertificado(){
 		if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getRutPersonaSolicitudCertificado()!=null){
 			objLog.info("D - validarRutPersonaSolicitudCertificado: "+solicitudCertificadoDTO.getRutPersonaSolicitudCertificado());
+			return true;
 		}
-
+		return false;
 	}
 
-	public void validarProgramaUniversidadSolicitudCertificado(){
+	public boolean validarProgramaUniversidadSolicitudCertificado(){
 
 		if(selecPrograma<1){
 			solicitudCertificadoDTO.setIdProgramaUniversidad(0);
+			return false;
 		}
 		else{
 			int numer = selecPrograma;
@@ -263,26 +269,34 @@ public class SolicitudCertificadoImpl {
 
 			if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getIdProgramaUniversidad()>0){
 				objLog.info("E - validarProgramaUniversidadSolicitudCertificado: "+obtenerProgramaUniversidad(solicitudCertificadoDTO.getIdProgramaUniversidad()));
+				return true;
 			}
 		}
+		
+		return false;
 	}
 
-	public void validarEmailPersonaSolicitudCertificado(){
+	public boolean validarEmailPersonaSolicitudCertificado(){
 		if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getMailMember()!=null){
 			objLog.info("F - validarEmailPersonaSolicitudCertificado: "+solicitudCertificadoDTO.getMailMember());
+			return true;
 		}
+		return false;
 	}
 
-	public void validarAnhoEgresoPersonaSolicitudCertificado(){
+	public boolean validarAnhoEgresoPersonaSolicitudCertificado(){
 		if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getAnhoIngreso()!=null){
 			objLog.info("G - validarAnhoEgresoPersonaSolicitudCertificado: "+solicitudCertificadoDTO.getAnhoIngreso());
+			return true;
 		}
+		return false;
 	}
 
-	public void validarTipoCertificado(){
+	public boolean validarTipoCertificado(){
 
 		if(solicitudCertificadoDTO.getIdTipoCertificado()<1){
 			solicitudCertificadoDTO.setIdTipoCertificado(0);
+			return false;
 		}
 		else{
 			int numer = solicitudCertificadoDTO.getIdTipoCertificado();
@@ -291,13 +305,17 @@ public class SolicitudCertificadoImpl {
 
 			if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getIdTipoCertificado()>0){
 				objLog.info("H - validarTipoCertificado: "+obtenerTipoCertificado(solicitudCertificadoDTO.getIdTipoCertificado()));
+				return true;
 			}
 		}
+		
+		return false;
 	}
 
-	public void validarFinalidadCertificado(){
+	public boolean validarFinalidadCertificado(){
 		if(solicitudCertificadoDTO.getIdFinalidadCertificado()<1){
 			solicitudCertificadoDTO.setIdFinalidadCertificado(0);
+			return false;
 		}
 		else{
 			int numer = solicitudCertificadoDTO.getIdFinalidadCertificado();
@@ -306,8 +324,10 @@ public class SolicitudCertificadoImpl {
 
 			if(solicitudCertificadoDTO!=null && solicitudCertificadoDTO.getIdFinalidadCertificado()>0){
 				objLog.info("I - validarFinalidadCertificado: "+obtenerFinalidadCertificado(solicitudCertificadoDTO.getIdTipoCertificado()));
+				return true;
 			}
 		}
+		return false;
 	}
 
 	/** @Do valida si el llenado de los datos del formulario es correcto o no.
