@@ -328,24 +328,28 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
         $http.post('/uchile-facultad-de-arte-new/rest/SolicitudCertificadoService/almacenarSolicitudCertificadoPagoOffline', data, config)
         .then(
         	function (response) {
-        		$scope.tieneEtiquetaRecomendado = response.data.tieneEtiquetaRecomendado;
-    			$scope.distribuccionNuevaFicha = response.data.distribuccionNuevaFicha;
-
-        	}, 
-        	function (response) {
-        		$scope.mostrarListadoHoteles = false;
-	    		$scope.mostrarIntersitial = false;
-	    		$scope.mostrarErrores = false;
-	    		$scope.mostrarErrorGenerico = true;
-	    		$scope.mostrarErrorDisponibilidad = false;
-	    		if(response.data.hotelTipoError !== null && response.data.hotelTipoError !==''){
-	    			$scope.hasError = true;
-		    		$scope.urlParaGoogleAnalitices = $window.location.pathname+''+ $window.location.search;
-		    		$scope.trackHotelError(response.data.hotelTipoError, $scope.urlParaGoogleAnalitices);
-	    		}
+        		if(response.data !== undefined){
+        			var url = $window.origin +'/'+ response.data.url;
+        			$window.location.href = url;
+        		}else{
+        			
+        		}
             }
         );
     };
+
+    
+	$scope.caracteresTexto = function (texto){
+	  console.log('=============================================== validar texto =======================================================');
+	    console.log(texto);
+	    var caract = new RegExp(/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/);
+	    if (caract.test(texto) == false){
+	        return false;
+	    }else{
+	        return true;
+	    }
+	  console.log('======================================================================================================================');
+	}   
     
     
 	$scope.validaRut= function(rut){
@@ -416,6 +420,27 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
 	$scope.validarData = function (){
 		
 		console.log('============================ verificacion de la informacion ingresada =================================================');
+
+    	var validoNombre = $scope.caracteresTexto($scope.nombre.val());
+    	if(!validoNombre){
+    		$scope.mensaje.html("<span><strong>*</strong> Debe ingresar el nombre del Alumno.</span>");
+    		$scope.mensaje.attr('style','display: block;')
+    		return false;
+    	}		
+    	var validoPaterno = $scope.caracteresTexto($scope.apellidoPaterno.val());
+    	if(!validoPaterno){
+    		$scope.mensaje.html("<span><strong>*</strong> Debe ingresar el apellido paterno del Alumno.</span>");
+    		$scope.mensaje.attr('style','display: block;')
+    		return false;
+    	}
+    	
+    	var validoMaterno = $scope.caracteresTexto($scope.apellidoMaterno.val());
+    	if(!validoMaterno){
+    		$scope.mensaje.html("<span><strong>*</strong> Debe ingresar el apellido materno del Alumno.</span>");
+    		$scope.mensaje.attr('style','display: block;')
+    		return false;
+    	}   	
+		
     	var valido = $scope.validaRut($scope.rut.val());
     	if(!valido){
     		$scope.mensaje.html("<span><strong>*</strong> RUT incorrecto, ingréselo en el formato 11111111-1</span>");

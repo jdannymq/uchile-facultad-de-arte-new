@@ -41,6 +41,7 @@ public class SolicitudCertificadoService {
 		SolicitudCertificadoModel dataSolicitud = new SolicitudCertificadoModel();
 		SolicitudCertificadoImpl solicitudCertificadoImpl = new SolicitudCertificadoImpl();
 		ResponseTo data = new ResponseTo();
+		String jsonResultado = "";
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			
@@ -81,34 +82,34 @@ public class SolicitudCertificadoService {
 			/*hay que validar antes de enivar la información*/
 			
 			
+			
 
 		} catch (Exception e) {
 			logger.error("Exception en el seteo de los datos para la solicitud de certificado: "+e.getMessage(), e);
 			data.setEstado("ERROR");
 			data.setMensaje("Exception en el seteo de los datos para la solicitud de certificado");
-			data.setUrl("uchile-facultad-de-arte-new/error/main/view/solicitud-certificado-error.jsp");
-			String jsonResultado = AppGeneral.convertirObjectToJson(data);
+			data.setUrl("uchile-facultad-de-arte-new/main/view/solicitud-certificado-error.jsp");
+			jsonResultado = AppGeneral.convertirObjectToJson(data);
 			return jsonResultado;
 		}		
 		
 		logger.info("################################## Siguiente Paso Almacenar dato ###################################################");
 		try{
 			solicitudCertificadoImpl.almacenarSolicitudCertificadoPagoOffline();
-
-
+			data.setEstado("EXITO");
+			data.setMensaje("Fue envianda la solicitd de certificado");
+			data.setUrl("uchile-facultad-de-arte-new/main/view/solicitud-certificado-exito.jsp");
+			jsonResultado = AppGeneral.convertirObjectToJson(data);
+			
 		}catch(Exception e){
 			logger.error("Exception No fue posible enviar la solicitud del certificado. "+e.getMessage(), e);
 			data.setEstado("ERROR");
 			data.setMensaje("Exception en el seteo de los datos para la solicitud de certificado");
-			data.setUrl("uchile-facultad-de-arte-new/error/main/view/solicitud-certificado-error.jsp");
-			String jsonResultado = AppGeneral.convertirObjectToJson(data);
+			data.setUrl("uchile-facultad-de-arte-new/main/view/solicitud-certificado-error.jsp");
+			jsonResultado = AppGeneral.convertirObjectToJson(data);
 			return jsonResultado;			
 		}
-        return "{'mensaje':''}";
-
-	
-	
-	
+        return jsonResultado;
 	}
 	
 

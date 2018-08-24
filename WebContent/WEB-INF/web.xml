@@ -28,12 +28,6 @@
     <url-pattern>/solicitud/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>SolicitudCertificadoError</servlet-name>
-    <url-pattern>/error/*</url-pattern>
-  </servlet-mapping>  
- 
-  
-  <servlet-mapping>
     <servlet-name>ServletGodName</servlet-name>
     <url-pattern>/god/*</url-pattern>
   </servlet-mapping>

@@ -54,14 +54,14 @@
 		</div>
 		<div class="main-container footer">
 			<div class="panel panel-default">
-			  <div class="panel-heading">Error al enviar la solicitud de certificado</div>
+			  <div class="panel-heading">Su solicitud ha sido registrada</div>
 			  <div class="panel-body">
-				<div class="alert alert-danger" role="alert">
-				  <p>Estimado Alumno:</p>
-				  <p class="mb-0">Le informamos que nuestros sistemas internos están en manrención. Disculpen las molestias.</p>
-				  <p class="mb-0">Se recomienda intentar mas tarde.</p>
-				  <p class="mb-0">Saludos Coordiales.</p>
-				</div>  
+					<div class="texto-intro">IMPORTANTE: La respuesta oficial a tu
+						solicitud será enviada a tu Correo Electrónico por la Escuela de
+						Postgrado de la Facultad de Artes. La Escuela de
+						Postgrado es la única fuente de información oficial respecto de la
+						tramitación de estas solicitudes.
+					</div>		  
 			  </div>
 			</div>
 		</div>
