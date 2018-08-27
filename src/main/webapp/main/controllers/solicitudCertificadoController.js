@@ -51,6 +51,8 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
 	$scope.tabConfirmacion;
 	$scope.liAntecedentes;
 	$scope.liConfirmacion;
+	$scope.modalCargando;
+	
 	
 	
 	
@@ -146,6 +148,8 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
 		$scope.liConfirmacion = $('li[id=pestana2');
 		
 		$scope.mensaje = $('div[id=msg');
+		
+		$scope.modalCargando = $('div[id=cargandoModal');
 		
 		console.log('=================================================================================================================');
 	};
@@ -302,6 +306,8 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
 	
 	
     $scope.almacenarSolicitudCertificadoPagoOffline = function(){
+    	
+    	$scope.modalCargando.modal("show");
      	
     	$scope.jsonInformacionSolicitd =  new Object();
     	
@@ -331,8 +337,9 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
         		if(response.data !== undefined){
         			var url = $window.origin +'/'+ response.data.url;
         			$window.location.href = url;
+        			$scope.modalCargando.modal("hide");
         		}else{
-        			
+        			$scope.modalCargando.modal("hide");
         		}
             }
         );
@@ -441,7 +448,7 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
     		return false;
     	}   	
 		
-    	var valido = $scope.validaRut($scope.rut.val());
+    	var valido = true; //$scope.validaRut($scope.rut.val());
     	if(!valido){
     		$scope.mensaje.html("<span><strong>*</strong> RUT incorrecto, ingréselo en el formato 11111111-1</span>");
     		$scope.mensaje.attr('style','display: block;')
@@ -471,12 +478,12 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
     		$scope.mensaje.attr('style','display: block;')
     		return false;    		
     	}
-		if($scope.objetoTipoCertificado === undefined && $scope.objetoTipoCertificado == null){
+		if($scope.objetoTipoCertificado === undefined || $scope.objetoTipoCertificado == null){
     		$scope.mensaje.html("<span><strong>*</strong> Debe seleccionar un tipo de certificado.</span>");
     		$scope.mensaje.attr('style','display: block;')
     		return false;
 		}
-		if($scope.objetoFinalidadCertificado === undefined && $scope.objetoFinalidadCertificado === null){
+		if($scope.objetoFinalidadCertificado === undefined || $scope.objetoFinalidadCertificado === null){
     		$scope.mensaje.html("<span><strong>*</strong> Debe seleccionar la finalidad del certificado.</span>");
     		$scope.mensaje.attr('style','display: block;')
     		return false;
@@ -487,6 +494,21 @@ solicitudCertificadoApp.controller('SolicitudCertificadoController', [ '$scope',
 		console.log('======================================================================================================================');
 		return true;
 	}	
+	
+	$scope.levantarModal = function (){
+		console.log('====================================== levantar el modal ========================================');
+		$scope.modalCargando.modal("show");
+		console.log('======================================================================================================================');
+		return;
+	}	
+	
+	$scope.bajarModal = function (){
+		console.log('====================================== bajar el modal ========================================');
+		$scope.modalCargando.modal("hide");
+		console.log('======================================================================================================================');
+		return;
+	}	
+	
 	
 	
 	

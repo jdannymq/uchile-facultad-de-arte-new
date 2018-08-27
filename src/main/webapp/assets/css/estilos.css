@@ -274,3 +274,13 @@ display:none;
 	border-bottom: 30px solid #ccc;	
 }
 
+.modelCargando{
+	width: 100%!important; 
+	text-align:center;
+    
+}
+
+.modalPrincipal{
+	padding-top: 17%;
+}
+

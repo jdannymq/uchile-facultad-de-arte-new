@@ -27,6 +27,7 @@
     <servlet-name>SolicitudCertificado</servlet-name>
     <url-pattern>/solicitud/*</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>ServletGodName</servlet-name>
     <url-pattern>/god/*</url-pattern>

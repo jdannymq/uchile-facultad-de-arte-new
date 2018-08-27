@@ -296,6 +296,20 @@
 		<div class="texto-saludate">Universidad de Chile</div>
 
 	</div>
+
+	<!-- Modal -->
+	<div id="cargandoModal" class="modal fade " role="dialog" tabindex="-1">
+	  <div class="modal-dialog modalPrincipal" role="document">
 	
+	    <!-- Modal content-->
+	    <div class="modal-content modelCargando">
+	      <div class="modal-header">
+	        <h4 class="modal-title">Enviando la Solicitud del Certificado   
+	        	<img ng-src='/uchile-facultad-de-arte-new/administracion-solicitudes/loading2.gif' height="35" width="35" />
+	        </h4>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </body>
 </html>

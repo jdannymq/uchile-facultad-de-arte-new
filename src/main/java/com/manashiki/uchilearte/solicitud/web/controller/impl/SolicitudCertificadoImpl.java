@@ -515,9 +515,9 @@ public class SolicitudCertificadoImpl {
 			objLog.info("A4: Redireccion a "+paginaRedireccion);
 
 			if(flujoPagoOnline == true && aplicacionPagoOnline==true && online == true){
-				Navigation.redirectExterno(paginaRedireccion);
+				//Navigation.redirectExterno(paginaRedireccion);
 			}else{
-				Navigation.redirectInterno(paginaRedireccion);
+				//Navigation.redirectInterno(paginaRedireccion);
 			}
 		}
 

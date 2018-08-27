@@ -32,7 +32,7 @@ public class SolicitudCertificadoService {
     @Path("/almacenarSolicitudCertificadoPagoOffline")
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-    public String obtenerListadoHoteles(
+    public String obtenerListadoCertificados(
     									@FormParam("requestJson") String jsonParametrosBusquedaRequest,
     									@Context HttpServletResponse servletResponse) throws IOException {
 		logger.info("Inicio validación de Certificados.");
