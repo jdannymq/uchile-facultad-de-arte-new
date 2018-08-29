@@ -53,10 +53,9 @@
 
 </head>
 	<body class="body" ng-controller="SolicitudCertificadoExitoController" ng-init="leerSolicitudCertificadoExito(); data = {};">
-	
 		<div class="banner">
-			<img src='http://s22.postimg.org/xkg3u0li9/banner_1.jpg' border='0' alt="banner 1" />
-		</div>
+			<img src='/uchile-facultad-de-arte-new/administracion-solicitudes/banner_1.jpg' border='0' alt="banner 1" />
+		</div>		
 		<div class="main-container footer">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Su solicitud ha sido registrada</div>
@@ -69,7 +68,7 @@
 					</div>		  
 			  </div>
 			</div>
-			<button id="salir" type="button" class="btn botones-abajos" ng-click="cerrarVentana()">Volver</button>
+			<button id="salir" type="button" class="btn botones-abajos" ng-click="cerrarVentana()">Finalizar</button>
 		</div>
 	</body>
 </html>

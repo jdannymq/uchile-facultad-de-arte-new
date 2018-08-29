@@ -48,10 +48,10 @@
 		<script src="/uchile-facultad-de-arte-new/assets/js/validar_es.js"></script>
 </head>
 	<body class="body">
-	
 		<div class="banner">
-			<img src='http://s22.postimg.org/xkg3u0li9/banner_1.jpg' border='0' alt="banner 1" />
-		</div>
+			<img src='/uchile-facultad-de-arte-new/administracion-solicitudes/banner_1.jpg' border='0' alt="banner 1" />
+		</div>	
+
 		<div class="main-container footer">
 			<div class="panel panel-default">
 			  <div class="panel-heading">Error al enviar la solicitud de certificado</div>
@@ -64,6 +64,7 @@
 				</div>  
 			  </div>
 			</div>
+			<button id="salir" type="button" class="btn botones-abajos" ng-click="cerrarVentana()">Finalizar</button>
 		</div>
 	</body>
 </html>
