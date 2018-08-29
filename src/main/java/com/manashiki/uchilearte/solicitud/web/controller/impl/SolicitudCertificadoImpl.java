@@ -22,11 +22,14 @@ import com.manashiki.uchilearte.servdto.dto.entities.formulario.TipoCertificadoD
 import com.manashiki.uchilearte.servdto.request.RequestProductoDTO;
 import com.manashiki.uchilearte.servdto.transaccion.NegocioSolicitudDTO;
 import com.manashiki.uchilearte.servdto.wrapper.UchileArte;
-import com.manashiki.uchilearte.web.direccionamiento.Navigation;
-import com.manashiki.uchilearte.web.utilidades.ClienteRest;
-import com.manashiki.uchilearte.web.utilidades.ClienteRestUtilidades;
+import com.manashiki.uchilearte.web.utilidades.cliente.ClienteRest;
+import com.manashiki.uchilearte.web.utilidades.cliente.ClienteRestUtilidades;
+//import com.manashiki.uchilearte.web.direccionamiento.Navigation;
+//import com.manashiki.uchilearte.web.utilidades.ClienteRest;
+//import com.manashiki.uchilearte.web.utilidades.ClienteRestUtilidades;
 //import com.manashiki.uchilearte.web.utilidades.cliente.ClienteWsRestUtilidades;
-import com.manashiki.uchilearte.web.utilidades.properties.PropertiesAplicacion;
+//import com.manashiki.uchilearte.web.utilidades.properties.PropertiesAplicacion;
+import com.manashiki.uchilearte.web.utilidades.properties.UchileProperties;
 
 import vijnana.utilidades.component.utilidades.AppDate;
 import vijnana.utilidades.component.utilidades.TipoFormatoFecha;
@@ -49,7 +52,7 @@ public class SolicitudCertificadoImpl {
 	private FinalidadCertificadoDTO finalidadCertificado = new FinalidadCertificadoDTO();
 	private List<FinalidadCertificadoDTO> listaFinalidadCertificado = new ArrayList<FinalidadCertificadoDTO>();
 
-	PropertiesAplicacion propertiesAplicacion = new PropertiesAplicacion();
+	UchileProperties propertiesAplicacion = new UchileProperties();
 
 	//	private static final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 	//			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -130,9 +133,9 @@ public class SolicitudCertificadoImpl {
 
 		UchileArte uchileArte = new UchileArte();
 		//		 Mostrar Todo
-				ClienteRest clienteRest = new ClienteRest();
+		ClienteRest clienteRest = new ClienteRest();
 		//
-				uchileArte = clienteRest.post(new RequestProductoDTO(), propertiesAplicacion.getLocalListarProgramaUniversidad());
+		uchileArte = clienteRest.post(new RequestProductoDTO(), propertiesAplicacion.getLocalListarProgramaUniversidad());
 		//##################################################
 //		String ipServer = PropertiesAplicacion.getVijnanaServidor();
 //		//		String ipServer = "localhost:8080";
@@ -465,7 +468,7 @@ public class SolicitudCertificadoImpl {
 				requestProductoDTO.getSolicitudCertificadoDTO().setProgramaUniversidad(obtenerProgramaUniversidad(solicitudCertificadoDTO.getIdProgramaUniversidad()));
 				requestProductoDTO.getSolicitudCertificadoDTO().setTipoCertificado(obtenerTipoCertificado(solicitudCertificadoDTO.getIdTipoCertificado()));
 				requestProductoDTO.getSolicitudCertificadoDTO().setFinalidadCertificado(obtenerFinalidadCertificado(solicitudCertificadoDTO.getIdFinalidadCertificado()));
-				requestProductoDTO.getSolicitudCertificadoDTO().setSfechaSolicitud(AppDate.obtenerFormatoFecha(solicitudCertificadoDTO.getFechaSolicitud(), TipoFormatoFecha.DD_MM_YYYY));
+				requestProductoDTO.getSolicitudCertificadoDTO().setSfechaSolicitud(AppDate.obtenerFechaEnFormato(solicitudCertificadoDTO.getFechaSolicitud(), TipoFormatoFecha.DD_MM_YYYY));
 
 				String key = ClienteRestUtilidades.generacionSolicitudCertificadoSHA(requestProductoDTO);
 

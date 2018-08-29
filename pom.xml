@@ -34,17 +34,17 @@
 			<version>${vijnana.version}</version>
 		</dependency>	
 	
-		<dependency>	
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency>	 -->
+<!-- 			<groupId>log4j</groupId> -->
+<!-- 			<artifactId>log4j</artifactId> -->
+<!-- 			<version>1.2.17</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>junit</groupId> -->
+<!-- 			<artifactId>junit</artifactId> -->
+<!-- 			<version>3.8.1</version> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -92,44 +92,44 @@
 			<artifactId>jersey-core</artifactId>
 			<version>1.19</version>
 		</dependency>
-		<dependency>
-			<groupId>com.producto</groupId> 
-			<artifactId>com.producto.client</artifactId>
-			<version>1.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vf</groupId>
-			<artifactId>fwk.util</artifactId>
-			<version>1.1.2</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.producto</groupId>  -->
+<!-- 			<artifactId>com.producto.client</artifactId> -->
+<!-- 			<version>1.0.10</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.vf</groupId> -->
+<!-- 			<artifactId>fwk.util</artifactId> -->
+<!-- 			<version>1.1.2</version> -->
+<!-- 		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.5</version>
 		</dependency>
-		<dependency>
-            <groupId>com.parametro</groupId>
-            <artifactId>com.parametro.dto</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.parametro</groupId>
-            <artifactId>com.parametro.client</artifactId>
-            <version>1.0.2</version>
-        </dependency>		
+<!-- 		<dependency> -->
+<!--             <groupId>com.parametro</groupId> -->
+<!--             <artifactId>com.parametro.dto</artifactId> -->
+<!--             <version>1.0.2</version> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>com.parametro</groupId> -->
+<!--             <artifactId>com.parametro.client</artifactId> -->
+<!--             <version>1.0.2</version> -->
+<!--         </dependency>		 -->
 		
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>anguila thirdparty</id>
-			<url>http://dev.viajesfalabella.cl/artifactory/thirdparty</url>
-		</repository>
-		<repository>
-			<id>anguila central</id>
-			<url>http://anguila.viajesfalabella.com:8081/nexus/content/repositories/central/</url>
-		</repository>
-	</repositories>	
+<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>anguila thirdparty</id> -->
+<!-- 			<url>http://dev.viajesfalabella.cl/artifactory/thirdparty</url> -->
+<!-- 		</repository> -->
+<!-- 		<repository> -->
+<!-- 			<id>anguila central</id> -->
+<!-- 			<url>http://anguila.viajesfalabella.com:8081/nexus/content/repositories/central/</url> -->
+<!-- 		</repository> -->
+<!-- 	</repositories>	 -->
 	
 	<build>
 		<finalName>uchile-facultad-de-arte-new</finalName>

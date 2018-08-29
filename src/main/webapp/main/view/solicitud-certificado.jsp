@@ -160,7 +160,7 @@
 			      </tr>	
 			      <tr>
 			        <td style="font-size: 12px!important;">Año de Ingreso</td>
-			        <td><input type="text" class="form-control" id="annoIngresos" maxlength="4" placeholder="Ej: 2006"> </td>
+			        <td><input type="text" class="form-control" id="annoIngresos" maxlength="10" placeholder="Ej: 2006"> </td>
 			        <td></td>
 			        <td></td>
 			      </tr>			      

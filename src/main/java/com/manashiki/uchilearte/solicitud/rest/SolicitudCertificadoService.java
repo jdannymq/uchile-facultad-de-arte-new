@@ -20,7 +20,8 @@ import com.manashiki.uchilearte.servdto.dto.entities.formulario.SolicitudCertifi
 import com.manashiki.uchilearte.solicitud.dto.ResponseTo;
 import com.manashiki.uchilearte.solicitud.web.controller.impl.SolicitudCertificadoImpl;
 import com.manashiki.uchilearte.solicitud.web.model.SolicitudCertificadoModel;
-import com.vf.fwk.util.AppGeneral;
+
+import vijnana.utilidades.component.utilidades.JsonMappeo;
 
 
 @Path("/SolicitudCertificadoService")
@@ -89,7 +90,7 @@ public class SolicitudCertificadoService {
 			data.setEstado("ERROR");
 			data.setMensaje("Exception en el seteo de los datos para la solicitud de certificado");
 			data.setUrl("uchile-facultad-de-arte-new/main/view/solicitud-certificado-error.jsp");
-			jsonResultado = AppGeneral.convertirObjectToJson(data);
+			jsonResultado = JsonMappeo.convertirObjectToJson(data);
 			return jsonResultado;
 		}		
 		
@@ -99,14 +100,14 @@ public class SolicitudCertificadoService {
 			data.setEstado("EXITO");
 			data.setMensaje("Fue envianda la solicitd de certificado");
 			data.setUrl("uchile-facultad-de-arte-new/main/view/solicitud-certificado-exito.jsp");
-			jsonResultado = AppGeneral.convertirObjectToJson(data);
+			jsonResultado = JsonMappeo.convertirObjectToJson(data);
 			
 		}catch(Exception e){
 			logger.error("Exception No fue posible enviar la solicitud del certificado. "+e.getMessage(), e);
 			data.setEstado("ERROR");
 			data.setMensaje("Exception en el seteo de los datos para la solicitud de certificado");
 			data.setUrl("uchile-facultad-de-arte-new/main/view/solicitud-certificado-error.jsp");
-			jsonResultado = AppGeneral.convertirObjectToJson(data);
+			jsonResultado = JsonMappeo.convertirObjectToJson(data);
 			return jsonResultado;			
 		}
         return jsonResultado;

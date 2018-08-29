@@ -11,6 +11,15 @@
         <dependent-module archiveName="manashiki-uchilearte-servdto-1.0.0.a.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/manashiki-uchilearte-servdto/manashiki-uchilearte-servdto">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="vijnana.wsrest.client-2.0.0.v.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vijnana.wsrest.client/vijnana.wsrest.client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vijnana.respuesta.rest-2.0.0.v.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vijnana.respuesta.rest/vijnana.respuesta.rest">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vijnana.utilidades.component-2.0.0.v.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/vijnana.utilidades.component/vijnana.utilidades.component">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/uchile-facultad-de-arte-new/target/classes"/>
         <property name="context-root" value="uchile-facultad-de-arte-new"/>
     </wb-module>
